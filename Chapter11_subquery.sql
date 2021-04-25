@@ -54,3 +54,11 @@ use SchoolSchedulingExample
 select s.StudFirstName, s.StudLastName from Students as s where s.StudentID not in 
 (select StudentID from Student_Schedules where ClassStatus = 3)
 
+use RecipesExample
+
+--Q10:Display all the ingredients for recipes that contain carrots.
+select r1.RecipeTitle, i1.IngredientName from Recipes as r1 join Recipe_Ingredients as ri1 on ri1.RecipeID=r1.RecipeID 
+join Ingredients as i1 on i1.IngredientID=ri1.IngredientID where r1.RecipeID in (
+select ri.RecipeID from Recipe_Ingredients as ri 
+join Ingredients as i on i.IngredientID=ri.IngredientID
+where i.IngredientName = 'carrot')
